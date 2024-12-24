@@ -4,24 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.xue.scaffolding.demo1</groupId>
+    <parent>
+        <groupId>com.xue.scaffolding</groupId>
+        <artifactId>Scaffolding</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
     <artifactId>scaffolding-demo1</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <spring-boot.version>3.3.7</spring-boot.version>
+    </properties>
 
     <!-- 更改为 war 打包 -->
     <packaging>war</packaging>
-
-    <properties>
-        <!--Spring Boot 3 基于Spring Framework 6.0，而且要求Java最低版本为Java17 -->
-        <spring-boot.version>3.3.7</spring-boot.version>
-        <java.version>17</java.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-        <!-- Lombok 版本  lombok 是从 1.8.22 开始兼容 jdk 17-->
-        <lombok.version>1.18.28</lombok.version>
-    </properties>
 
     <repositories>
         <!-- 阿里云仓库地址 -->
@@ -35,13 +30,13 @@
             <url>https://repo.maven.apache.org/maven2</url>
         </repository>
     </repositories>
-
     <dependencies>
-        <!-- Spring Boot Web 依赖 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version>
+            <groupId>com.xue.scaffolding</groupId>
+            <artifactId>scaffolding-springboot3</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>pom</type>
+            <!--打 war包 去除tomcat依赖-->
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -49,43 +44,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- Spring Boot Logging 依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-        <!-- 测试依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <version>${spring-boot.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-
-        <!-- Lombok 依赖 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- mapstruct -->
-        <!--mapstruct主键 包含所需要的注解，例如 @Mapper-->
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${org.mapstruct.version}</version>
-        </dependency>
-        <!-- mapstruct实现类执行器 -->
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>${org.mapstruct.version}</version>
-        </dependency>
-
         <!-- 嵌入式 Tomcat 服务器依赖 打war包去除内置tomcat -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -93,8 +51,6 @@
             <version>${spring-boot.version}</version>
             <scope>provided</scope>
         </dependency>
-
-
         <!--项目bean类-->
         <dependency>
             <groupId>org.example</groupId>
@@ -102,8 +58,6 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-
-
     </dependencies>
 
 
@@ -120,7 +74,6 @@
                 <configuration>
                     <!--在Spring Boot Maven插件配置中指定主类，以便在运行WAR包时知道从哪里开始执行。-->
                     <mainClass>com.xue.scaffolding.demo1.ScaffoldingDemo1Application</mainClass>
-                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
                 </configuration>
             </plugin>
         </plugins>
