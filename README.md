@@ -26,3 +26,4 @@ spring boot 3 基础pom
 
 - 自定义异常类
 - 处理spring mvc全局异常返回
+- 全局日志处理
