@@ -12,7 +12,7 @@ spring boot 3 基础pom
 - mapstruct
 
 ## scaffolding-demo1
-依赖 scaffolding-springboot3
+基于 scaffolding-springboot3
 
 基础脚手架 springboot
 包含内容如下
@@ -20,3 +20,9 @@ spring boot 3 基础pom
 - 简单的spring mvc例子
 - maven修改为war包
 - 自定义banner
+## scaffolding-customeException
+基于 scaffolding-springboot3
+自定义异常处理
+
+- 自定义异常类
+- 处理spring mvc全局异常返回
