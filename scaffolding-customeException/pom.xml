@@ -8,11 +8,24 @@
         <artifactId>Scaffolding</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <repositories>
+        <!-- 阿里云仓库地址 -->
+        <repository>
+            <id>aliyunmaven</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+        <!-- 默认仓库地址 -->
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
 
     <groupId>org.example</groupId>
     <artifactId>scaffolding-customeException</artifactId>
 
     <properties>
+        <spring-boot.version>3.3.7</spring-boot.version>
         <lombok.version>1.18.28</lombok.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -37,6 +50,24 @@
             <groupId>com.xue.scaffolding</groupId>
             <artifactId>scaffolding-bean</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- aop  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <!-- 和javax一样的pom  oracle在19年把javax捐给eclipse基金会，
+        但不允许使用javax的命名空间，所以eclipse才继续发展成现在的javaee标准Jakarta，
+        Jakarta 8与javaee 8只是换了个命名空间，jakarta9才是新的发展，
+        spring6与spring boot3会采用Jakarta作为新的命名空间
+        tomcat 10版本用的就是Jakarta9的标准更正上方jdk Jakarta 11要求最低版本为11-->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>9.1.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
